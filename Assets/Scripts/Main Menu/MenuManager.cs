@@ -14,4 +14,10 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // Go to Bonus Scene
+    public void BonusScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
