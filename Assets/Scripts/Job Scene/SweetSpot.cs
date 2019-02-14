@@ -12,6 +12,7 @@ public class SweetSpot : MonoBehaviour
         RandomizePosition();
     }
 
+    // ChopWood successful when hit by axe
     public void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")

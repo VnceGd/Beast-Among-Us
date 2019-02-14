@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        // Go to shop menu
+        // Go to shop menu (Items Not Implemented)
         cityPanel.SetActive(false);
         shopPanel.SetActive(true);
     }

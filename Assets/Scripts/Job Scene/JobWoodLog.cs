@@ -10,6 +10,7 @@ public class JobWoodLog : MonoBehaviour
         logMotion = GetComponentInParent<LogMotion>();
     }
 
+    // ChopWood unsuccessful when hit by axe
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
