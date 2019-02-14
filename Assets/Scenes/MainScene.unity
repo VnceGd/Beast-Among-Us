@@ -266,7 +266,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 354439504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a213479626c4740348d131034b96892c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dce44f430a4f4cd1af9c11577054e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &354439506
@@ -1053,6 +1053,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7873872788664532132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873872788664532130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403cc0fe7694d41c9bacec61c535d69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9136854252325349856
 PrefabInstance:
   m_ObjectHideFlags: 0
