@@ -11,9 +11,9 @@ public class JobWoodLog : MonoBehaviour
     }
 
     // ChopWood unsuccessful when hit by axe
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if(other.tag == "Player")
         {
             logMotion.ChopWood(false);
         }

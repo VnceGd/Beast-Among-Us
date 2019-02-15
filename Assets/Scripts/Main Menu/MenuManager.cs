@@ -18,6 +18,6 @@ public class MenuManager : MonoBehaviour
     // Go to Bonus Scene
     public void BonusScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("BonusScene");
     }
 }

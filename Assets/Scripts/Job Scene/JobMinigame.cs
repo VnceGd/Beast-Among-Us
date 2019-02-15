@@ -18,7 +18,7 @@ public class JobMinigame : MonoBehaviour
     public GameObject successArray;
     private Toggle[] successToggles;
 
-    public int logCount = 5;
+    public int logCount = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -62,12 +62,12 @@ public class JobMinigame : MonoBehaviour
         logMotion.ResetLog();
         woodLog.SetActive(false);
 
-        foreach(Toggle tog in successToggles)
+        foreach (Toggle tog in successToggles)
         {
             tog.isOn = false;
         }
 
-        logCount = 5;
+        logCount = 3;
         countdownTimer = 2f;
         countdownActive = true;
         countdown.SetActive(true);
@@ -87,11 +87,8 @@ public class JobMinigame : MonoBehaviour
     public void ChopLog(bool sweetSpotHit)
     {
         // Visual indicator of successful wood chopping
-        logCount--;
-        logMotion.logSpeed = logCount - 7;
         if (sweetSpotHit)
         {
-            int successCount = 0;
             foreach (Toggle tog in successToggles)
             {
                 if (!tog.isOn)
@@ -99,14 +96,10 @@ public class JobMinigame : MonoBehaviour
                     tog.isOn = true;
                     break;
                 }
-                successCount++;
-            }
-            if(successCount >= 3)
-            {
-                EndMinigame(true);
-                return;
             }
         }
+        logCount--;
+        logMotion.logSpeed *= 1.5f;
         if (logCount <= 0)
         {
             foreach (Toggle tog in successToggles)

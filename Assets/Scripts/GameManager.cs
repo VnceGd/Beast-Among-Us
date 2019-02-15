@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     /*
      *  VARIABLES
      */
-    public int day = 1;
+    private readonly int MAXHUNGER = 20;
+
+    private int day = 1;
     public int hungerMeter = 10;
     public int alertLevel;
     public double money;
@@ -18,20 +20,36 @@ public class GameManager : MonoBehaviour
     public GameObject cityPanel;
     public GameObject woodsPanel;
     public GameObject shopPanel;
+    public GameObject trainingPanel;
     public TextMeshProUGUI dayNumber;
     public TextMeshProUGUI moneyNumber;
     public TextMeshProUGUI hungerNumber;
     public Slider hungerSlider;
     public GameObject gameOverPanel;
 
-    // Stats (NOT IMPLEMENTED)
-    public double strengthStat = 1f;
-    public double agilityStat = 1f;
-    public double intelligenceStat = 1f;
+    // Stats
+    public TextMeshProUGUI speedStatText;
+    public TextMeshProUGUI charismaStatText;
+    public TextMeshProUGUI awarenessStatText;
+
+    public int speedStat = 1;
+    public int charismaStat = 1;
+    public int awarenessStat = 1;
+
+    // Inventory
+    public GameObject inventoryPanel;
+    public int forkAndKnifeCount;
+    public int shieldCount;
+    public int decoyCount;
+    public int bearTrapCount;
+    public TextMeshProUGUI forkAndKnifeCountText;
+    public TextMeshProUGUI shieldCountText;
+    public TextMeshProUGUI decoyCountText;
+    public TextMeshProUGUI bearTrapCountText;
 
     // Minigames
     public GameObject jobMinigame;
-    public GameObject trainingMinigame;
+    public GameObject charismaTrainingMinigame;
 
     /*
      *  FUNCTIONS
@@ -53,10 +71,13 @@ public class GameManager : MonoBehaviour
     {
         day++;
         dayNumber.text = day.ToString();
-        hungerMeter += hungerChange;
-        hungerSlider.value = hungerMeter;
-        hungerNumber.text = hungerMeter.ToString();
-        if(hungerMeter <= 0)
+        if (hungerChange > 0 && hungerMeter < MAXHUNGER || hungerChange < 0)
+        {
+            hungerMeter += hungerChange;
+            hungerSlider.value = hungerMeter;
+            hungerNumber.text = hungerMeter.ToString();
+        }
+        if (hungerMeter <= 0)
         {
             GameOver();
         }
@@ -81,7 +102,7 @@ public class GameManager : MonoBehaviour
     // Exit the Job Minigame and return to Daily Choice Menu
     public void FinishJob(bool success)
     {
-        if(success)
+        if (success)
         {
             money++;
             moneyNumber.text = money.ToString("0");
@@ -93,14 +114,57 @@ public class GameManager : MonoBehaviour
     // Open Shop Menu
     public void BuyItem()
     {
+        // Go to shop menu (Items Not Implemented)
+        cityPanel.SetActive(false);
+        shopPanel.SetActive(true);
+    }
+
+    // Purchase an item from the shop
+    public void MakePurchase(int item)
+    {
         // Check if player has money
         if (money <= 0)
         {
             return;
         }
-        // Go to shop menu (Items Not Implemented)
-        cityPanel.SetActive(false);
-        shopPanel.SetActive(true);
+        switch(item)
+        {
+            case 0: // Fork and Knife
+                if(money >= 3)
+                {
+                    forkAndKnifeCount++;
+                    forkAndKnifeCountText.text = "Fork and Knife (" + forkAndKnifeCount + ")";
+                    money -= 3;
+                }
+                break;
+            case 1: // Shield
+                if(money >= 2)
+                {
+                    shieldCount++;
+                    shieldCountText.text = "Shield (" + shieldCount + ")";
+                    money -= 2;
+                }
+                break;
+            case 2: // Decoy
+                if(money >= 1)
+                {
+                    decoyCount++;
+                    decoyCountText.text = "Decoy (" + decoyCount + ")";
+                    money -= 1;
+                }
+                break;
+            case 3: // Bear Trap
+                if(money >= 2)
+                {
+                    bearTrapCount++;
+                    bearTrapCountText.text = "Bear Trap (" + bearTrapCount + ")";
+                    money -= 2;
+                }
+                break;
+        }
+        moneyNumber.text = money.ToString();
+        shopPanel.SetActive(false);
+        EndOfDay(-2);
     }
 
     // Activate Hunting Animals Minigame
@@ -110,17 +174,35 @@ public class GameManager : MonoBehaviour
         EndOfDay(-1); // Move this to a finish function when minigame implemented
     }
 
-    // Activate Train Skills Minigame
+    // Open Train Skills Menu
     public void TrainSkills()
     {
         woodsPanel.SetActive(false);
-        trainingMinigame.SetActive(true);
+        trainingPanel.SetActive(true);
+    }
+
+    // Activate Train Charisma Minigame
+    public void TrainCharisma()
+    {
+        trainingPanel.SetActive(false);
+        charismaTrainingMinigame.SetActive(true);
     }
 
     // Exit Training Minigame and return to Daily Choice Menu
-    public void FinishTraining()
+    public void FinishTraining(int which)
     {
-        trainingMinigame.SetActive(false);
+        switch(which) {
+            case 0:
+                // Finish Speed Training Minigame
+                break;
+            case 1:
+                charismaTrainingMinigame.SetActive(false);
+                charismaStatText.text = "Charisma " + charismaStat;
+                break;
+            case 2:
+                // Finish Awareness Training Minigame 
+                break;
+        }
         EndOfDay(-2);
     }
 }

@@ -375,7 +375,7 @@ MonoBehaviour:
   countdownActive: 1
   woodLog: {fileID: 8453643963998158136}
   successArray: {fileID: 6432450602702092049}
-  logCount: 5
+  logCount: 3
 --- !u!1 &6280750502860947268
 GameObject:
   m_ObjectHideFlags: 0

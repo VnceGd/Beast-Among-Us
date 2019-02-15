@@ -9,7 +9,7 @@ public class AxeMotion : MonoBehaviour
     {
         float mouseY = Input.GetAxis("Mouse Y");
 
-        if(Mathf.Abs(mouseY) > 0f)
+        if (Mathf.Abs(mouseY) > 0f)
         {
             if (transform.position.y > 3f)
             {

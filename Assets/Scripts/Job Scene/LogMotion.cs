@@ -11,6 +11,8 @@ public class LogMotion : MonoBehaviour
     public bool movingRight;
     public bool chopped;
 
+    public float waitTimer = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,15 @@ public class LogMotion : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            waitTimer -= Time.deltaTime;
+            if(waitTimer <= 0f)
+            {
+                ResetLog();
+                waitTimer = 1f;
+            }
+        }
     }
 
     // Send log back to starting position, randomize sweet spot
@@ -50,7 +61,7 @@ public class LogMotion : MonoBehaviour
     {
         transform.position = Vector3.right * maxPosX;
         chopped = false;
-        GetComponentInChildren<SweetSpot>().RandomizePosition();
+        movingRight = false;
     }
 
     // Reset log and call ChopLog() from Job Minigame
@@ -61,6 +72,5 @@ public class LogMotion : MonoBehaviour
             chopped = true;
             jobMinigame.ChopLog(success);
         }
-        ResetLog();
     }
 }
