@@ -29,11 +29,11 @@ public class PlayerMovement : MonoBehaviour
         float v_input = Input.GetAxis("Vertical");
         Vector3 moveVelocity = Vector3.zero;
 
-        if(Mathf.Abs(h_input) > 0f)
+        if (Mathf.Abs(h_input) > 0f)
         {
             moveVelocity += Vector3.right * Time.deltaTime * h_input * moveSpeed;
         }
-        if(Mathf.Abs(v_input) > 0f)
+        if (Mathf.Abs(v_input) > 0f)
         {
             moveVelocity += Vector3.forward * Time.deltaTime * v_input * moveSpeed;
         }
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     // Reveal or remove werewolf traits
     public void ToggleWerewolfMode()
     {
-        if(werewolfMode)
+        if (werewolfMode)
         {
             werewolfTraits.SetActive(false);
             werewolfMode = false;

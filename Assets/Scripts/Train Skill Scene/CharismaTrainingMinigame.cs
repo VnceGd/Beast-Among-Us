@@ -20,7 +20,7 @@ public class CharismaTrainingMinigame : MonoBehaviour
     public float sweetSpotPosition;
     public Image sweetSpotImage;
     public float sweetSpotHeight = 50f;
-   
+
     // Love Level Slider
     public Slider loveLevelSlider;
     public float increaseAmount = 10f;

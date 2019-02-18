@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour
     {
         if (success)
         {
-            money++;
-            moneyNumber.text = money.ToString("0");
+            money += charismaStat;
+            moneyNumber.text = money.ToString();
         }
         jobMinigame.SetActive(false);
         EndOfDay(-2);
@@ -128,10 +128,10 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        switch(item)
+        switch (item)
         {
             case 0: // Fork and Knife
-                if(money >= 3)
+                if (money >= 3)
                 {
                     forkAndKnifeCount++;
                     forkAndKnifeCountText.text = "Fork and Knife (" + forkAndKnifeCount + ")";
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 1: // Shield
-                if(money >= 2)
+                if (money >= 2)
                 {
                     shieldCount++;
                     shieldCountText.text = "Shield (" + shieldCount + ")";
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 2: // Decoy
-                if(money >= 1)
+                if (money >= 1)
                 {
                     decoyCount++;
                     decoyCountText.text = "Decoy (" + decoyCount + ")";
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 3: // Bear Trap
-                if(money >= 2)
+                if (money >= 2)
                 {
                     bearTrapCount++;
                     bearTrapCountText.text = "Bear Trap (" + bearTrapCount + ")";
@@ -200,7 +200,8 @@ public class GameManager : MonoBehaviour
     // Exit Training Minigame and return to Daily Choice Menu
     public void FinishTraining(int which)
     {
-        switch(which) {
+        switch (which)
+        {
             case 0:
                 // Finish Speed Training Minigame
                 break;

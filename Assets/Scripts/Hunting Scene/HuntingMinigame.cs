@@ -55,11 +55,7 @@ public class HuntingMinigame : MonoBehaviour
     public void EndMinigame()
     {
         int hungerChange = 0;
-        if (quantityEaten == 0)
-        {
-            hungerChange = -2;
-        }
-        else if (quantityEaten < (quota / 2))
+        if (quantityEaten < (quota / 2))
         {
             hungerChange = -1;
         }

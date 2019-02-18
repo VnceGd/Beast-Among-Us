@@ -15,7 +15,7 @@ public class Squirrel : MonoBehaviour
     // Eaten by player on collision
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             huntingMinigame.EatAnimal();
             gameObject.SetActive(false);

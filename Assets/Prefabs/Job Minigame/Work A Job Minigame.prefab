@@ -371,11 +371,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   countdown: {fileID: 8532547768632174245}
-  countdownTimer: 2
+  countdownTimer: 1
   countdownActive: 1
   woodLog: {fileID: 8453643963998158136}
   successArray: {fileID: 6432450602702092049}
-  logCount: 3
+  logCount: 5
 --- !u!1 &6280750502860947268
 GameObject:
   m_ObjectHideFlags: 0
