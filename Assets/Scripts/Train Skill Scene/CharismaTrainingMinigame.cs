@@ -9,6 +9,8 @@ public class CharismaTrainingMinigame : MonoBehaviour
     private readonly float MINSLIDERVALUE = -250f;
     private readonly float MAXSWEETSPOTPOS = 225f;
     private readonly float MINSWEETSPOTPOS = -150f;
+    private readonly float MAXPROGRESS = 4f;
+    private readonly float STARTPROGRESS = 2f;
 
     private GameObject manager;
     private GameManager gameManager;
@@ -23,11 +25,10 @@ public class CharismaTrainingMinigame : MonoBehaviour
     public Slider loveLevelSlider;
     public float increaseAmount = 10f;
     public float decaySpeed = 20f;
-    public float loveTimer = 3f;
-    public float failTimer = 3f;
-    private bool activated;
-    public TextMeshProUGUI loveTimerText;
 
+    public Slider progressBar;
+    public float progressIncreaseRate = 1f;
+    public float progressDecreaseRate = 0.3f;
 
     // Start is called before the first frame update
     public void Start()
@@ -42,6 +43,7 @@ public class CharismaTrainingMinigame : MonoBehaviour
     private void Update()
     {
         loveLevelSlider.value -= Time.deltaTime * decaySpeed;
+        progressBar.value -= Time.deltaTime * progressDecreaseRate;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             loveLevelSlider.value += increaseAmount;
@@ -49,11 +51,9 @@ public class CharismaTrainingMinigame : MonoBehaviour
         if ((loveLevelSlider.value < sweetSpotPosition + (sweetSpotHeight / 2)) &&
            (loveLevelSlider.value > sweetSpotPosition - (sweetSpotHeight / 2)))
         {
-            activated = true;
             sweetSpotImage.color = Color.green;
-            loveTimer -= Time.deltaTime;
-            loveTimerText.text = loveTimer.ToString("0.0");
-            if (loveTimer < 0f)
+            progressBar.value += Time.deltaTime * progressIncreaseRate;
+            if (progressBar.value >= MAXPROGRESS)
             {
                 EndMinigame(true);
             }
@@ -61,13 +61,9 @@ public class CharismaTrainingMinigame : MonoBehaviour
         else
         {
             sweetSpotImage.color = Color.red;
-            if (activated)
+            if (progressBar.value <= 0f)
             {
-                failTimer -= Time.deltaTime;
-                if(failTimer < 0f)
-                {
-                    EndMinigame(false);
-                }
+                EndMinigame(false);
             }
         }
     }
@@ -86,6 +82,7 @@ public class CharismaTrainingMinigame : MonoBehaviour
         {
             gameManager.charismaStat++;
         }
+        ResetMinigame();
         gameManager.FinishTraining(1); // 1 = Charisma Training
     }
 
@@ -93,11 +90,7 @@ public class CharismaTrainingMinigame : MonoBehaviour
     public void ResetMinigame()
     {
         loveLevelSlider.value = MINSLIDERVALUE;
-        loveTimer = 3f;
-        failTimer = 3f;
-        activated = false;
-        loveTimerText.text = loveTimer.ToString("0.0");
-        sweetSpotImage.color = new Color(0f, 255f, 0f, 100f);
+        progressBar.value = STARTPROGRESS;
         RandomizeSweetSpot();
     }
 }

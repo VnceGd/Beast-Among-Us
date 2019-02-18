@@ -2,6 +2,9 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameObject manager;
+    private GameManager gameManager;
+
     public float moveSpeed = 5f;
     public bool werewolfMode;
 
@@ -11,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        manager = GameObject.Find("Game Manager");
+        gameManager = manager.GetComponent<GameManager>();
+
         playerBody = GetComponent<Rigidbody>();
         werewolfTraits = GameObject.Find("Werewolf Traits");
         werewolfTraits.SetActive(false);

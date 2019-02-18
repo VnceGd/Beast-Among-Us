@@ -18,7 +18,7 @@ public class JobMinigame : MonoBehaviour
     public GameObject successArray;
     private Toggle[] successToggles;
 
-    public int logCount = 3;
+    public int logCount = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +56,7 @@ public class JobMinigame : MonoBehaviour
         countdown.SetActive(false);
     }
 
+    // Reset varialbes to starting values
     public void ResetMinigame()
     {
         logMotion.logSpeed = -2f;

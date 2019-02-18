@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public Slider hungerSlider;
     public GameObject gameOverPanel;
 
+    private GameObject menuCamera;
+
     // Stats
     public TextMeshProUGUI speedStatText;
     public TextMeshProUGUI charismaStatText;
@@ -50,10 +52,17 @@ public class GameManager : MonoBehaviour
     // Minigames
     public GameObject jobMinigame;
     public GameObject charismaTrainingMinigame;
+    public GameObject huntingMinigame;
 
     /*
      *  FUNCTIONS
      */
+    // Start is called before the first frame update
+    public void Start()
+    {
+        menuCamera = GameObject.Find("Menu Camera");
+    }
+
     // Load Main Menu Scene
     public void QuitToMainMenu()
     {
@@ -82,14 +91,6 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
         dailyChoicePanel.SetActive(true);
-    }
-
-    // Activate Killing People Minigame
-    public void KillPeople()
-    {
-        cityPanel.SetActive(false);
-        alertLevel++;
-        EndOfDay(1); // Move this to a finish function when minigame implemented
     }
 
     // Activate Work a Job Minigame
@@ -168,10 +169,18 @@ public class GameManager : MonoBehaviour
     }
 
     // Activate Hunting Animals Minigame
-    public void HuntAnimals()
+    public void GoHunting()
     {
         woodsPanel.SetActive(false);
-        EndOfDay(-1); // Move this to a finish function when minigame implemented
+        huntingMinigame.SetActive(true);
+        menuCamera.SetActive(false);
+    }
+
+    public void FinishHunting(int hungerChange)
+    {
+        huntingMinigame.SetActive(false);
+        menuCamera.SetActive(true);
+        EndOfDay(hungerChange); // Move this to a finish function when minigame implemented
     }
 
     // Open Train Skills Menu
