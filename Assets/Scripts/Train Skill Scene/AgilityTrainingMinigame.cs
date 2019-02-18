@@ -14,6 +14,8 @@ public class AgilityTrainingMinigame : MonoBehaviour
 
     public GameObject[] col5;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
             {
                 int rand = (int) Random.Range(0, 4);
                 col1[rand].SetActive(true);
+                Instantiate(player, (col1[rand].transform.position + new Vector3(0,3,0)), player.transform.rotation);
                 return rand;
             }
             case 2:
