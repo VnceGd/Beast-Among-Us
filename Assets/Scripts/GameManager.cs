@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
     {
         trainingPanel.SetActive(false);
         agilityTrainingMinigame.SetActive(true);
+        menuCamera.SetActive(false);
     }
 
     // Exit Training Minigame and return to Daily Choice Menu
@@ -212,6 +213,7 @@ public class GameManager : MonoBehaviour
             case 0:
                 agilityTrainingMinigame.SetActive(false);
                 speedStatText.text = "Speed " + speedStat;
+                menuCamera.SetActive(true);
                 break;
             case 1:
                 charismaTrainingMinigame.SetActive(false);

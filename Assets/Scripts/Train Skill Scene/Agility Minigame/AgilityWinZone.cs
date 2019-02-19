@@ -16,7 +16,6 @@ public class AgilityWinZone : MonoBehaviour
         Debug.Log(other.name);
         if(other.name == "Player (Minigame)")
         {
-            Destroy(other.gameObject);
             agilityManager.EndMinigame(true);
         }
     }
