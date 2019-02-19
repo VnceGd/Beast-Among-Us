@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     // Minigames
     public GameObject jobMinigame;
     public GameObject charismaTrainingMinigame;
+    public GameObject agilityTrainingMinigame;
 
     /*
      *  FUNCTIONS
@@ -188,12 +189,19 @@ public class GameManager : MonoBehaviour
         charismaTrainingMinigame.SetActive(true);
     }
 
+    public void TrainAgility()
+    {
+        trainingPanel.SetActive(false);
+        agilityTrainingMinigame.SetActive(true);
+    }
+
     // Exit Training Minigame and return to Daily Choice Menu
     public void FinishTraining(int which)
     {
         switch(which) {
             case 0:
-                // Finish Speed Training Minigame
+                agilityTrainingMinigame.SetActive(false);
+                speedStatText.text = "Speed " + speedStat;
                 break;
             case 1:
                 charismaTrainingMinigame.SetActive(false);
