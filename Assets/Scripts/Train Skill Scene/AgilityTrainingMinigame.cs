@@ -19,6 +19,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resetMap();
         randomMap();
     }
 
@@ -57,7 +58,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
             {
                 int rand = (int) Random.Range(0, 4);
                 col1[rand].SetActive(true);
-                Instantiate(player, (col1[rand].transform.position + new Vector3(0,3,0)), player.transform.rotation);
+                player.transform.position = col1[rand].transform.position + new Vector3(0,3,0);
                 return rand;
             }
             case 2:
