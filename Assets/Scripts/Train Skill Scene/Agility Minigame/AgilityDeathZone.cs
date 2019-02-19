@@ -13,6 +13,7 @@ public class AgilityDeathZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if(other.name == "Player (Minigame)")
         {
             agilityManager.EndMinigame(false);

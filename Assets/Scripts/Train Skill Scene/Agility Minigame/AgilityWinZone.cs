@@ -13,8 +13,10 @@ public class AgilityWinZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if(other.name == "Player (Minigame)")
         {
+            Destroy(other.gameObject);
             agilityManager.EndMinigame(true);
         }
     }

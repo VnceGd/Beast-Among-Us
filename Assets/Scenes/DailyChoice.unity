@@ -1242,6 +1242,7 @@ GameObject:
   - component: {fileID: 81229373}
   - component: {fileID: 81229372}
   - component: {fileID: 81229371}
+  - component: {fileID: 81229374}
   m_Layer: 0
   m_Name: Win Zone
   m_TagString: Untagged
@@ -1284,6 +1285,18 @@ Transform:
   m_Father: {fileID: 1207874536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &81229374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81229370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe1fd579f1d7b64fbc1fcee887018ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &97390817
 GameObject:
   m_ObjectHideFlags: 0
@@ -5032,7 +5045,7 @@ MonoBehaviour:
   bearTrapCountText: {fileID: 626494297}
   jobMinigame: {fileID: 5467092626092369665}
   charismaTrainingMinigame: {fileID: 2531010686759934470}
-  agilityTrainingMinigame: {fileID: 0}
+  agilityTrainingMinigame: {fileID: 897134545}
 --- !u!4 &773561615
 Transform:
   m_ObjectHideFlags: 0
@@ -6953,7 +6966,7 @@ MonoBehaviour:
   - {fileID: 1208101603}
   player: {fileID: 1935253105}
   winZone: {fileID: 81229370}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 773561614}
 --- !u!4 &897134547
 Transform:
   m_ObjectHideFlags: 0
@@ -12224,6 +12237,7 @@ GameObject:
   - component: {fileID: 1889266758}
   - component: {fileID: 1889266760}
   - component: {fileID: 1889266759}
+  - component: {fileID: 1889266761}
   m_Layer: 0
   m_Name: Death Zone
   m_TagString: Untagged
@@ -12266,6 +12280,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889266757}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1889266761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889266757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be134f4367cd6a48a16e25788174cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1935253105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1325642948072158969, guid: 0ed819b6a46dd994da7c6c9418905c39,
