@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class CharismaTrainingMinigame : MonoBehaviour
 {
     // CONSTANTS
-    //private readonly float MAXSLIDERVALUE = 250f;
     private readonly float MINSLIDERVALUE = -250f;
     private readonly float MAXSWEETSPOTPOS = 225f;
     private readonly float MINSWEETSPOTPOS = -150f;

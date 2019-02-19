@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Squirrel : MonoBehaviour
 {
@@ -13,12 +11,12 @@ public class Squirrel : MonoBehaviour
     }
 
     // Eaten by player on collision
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             huntingMinigame.EatAnimal();
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
