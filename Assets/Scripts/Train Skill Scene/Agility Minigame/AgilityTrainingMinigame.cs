@@ -52,6 +52,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
             col4[i].SetActive(false);
             col5[i].SetActive(false);
         }
+        player.transform.position = Vector3.zero;
     }
 
     int selectBranch(int colNum, int branch)
@@ -108,6 +109,8 @@ public class AgilityTrainingMinigame : MonoBehaviour
         {
             gameManager.speedStat++;
         }
+        resetMap();
+        randomMap();
         gameManager.FinishTraining(0); // 0 = Agility Training
     }
 }

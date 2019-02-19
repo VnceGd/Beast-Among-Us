@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public Slider hungerSlider;
     public GameObject gameOverPanel;
 
+    private GameObject menuCamera;
+
     // Stats
     public TextMeshProUGUI speedStatText;
     public TextMeshProUGUI charismaStatText;
@@ -51,10 +53,17 @@ public class GameManager : MonoBehaviour
     public GameObject jobMinigame;
     public GameObject charismaTrainingMinigame;
     public GameObject agilityTrainingMinigame;
+    public GameObject huntingMinigame;
 
     /*
      *  FUNCTIONS
      */
+    // Start is called before the first frame update
+    public void Start()
+    {
+        menuCamera = GameObject.Find("Menu Camera");
+    }
+
     // Load Main Menu Scene
     public void QuitToMainMenu()
     {
@@ -85,14 +94,6 @@ public class GameManager : MonoBehaviour
         dailyChoicePanel.SetActive(true);
     }
 
-    // Activate Killing People Minigame
-    public void KillPeople()
-    {
-        cityPanel.SetActive(false);
-        alertLevel++;
-        EndOfDay(1); // Move this to a finish function when minigame implemented
-    }
-
     // Activate Work a Job Minigame
     public void WorkAJob()
     {
@@ -105,8 +106,8 @@ public class GameManager : MonoBehaviour
     {
         if (success)
         {
-            money++;
-            moneyNumber.text = money.ToString("0");
+            money += charismaStat;
+            moneyNumber.text = money.ToString();
         }
         jobMinigame.SetActive(false);
         EndOfDay(-2);
@@ -128,10 +129,10 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        switch(item)
+        switch (item)
         {
             case 0: // Fork and Knife
-                if(money >= 3)
+                if (money >= 3)
                 {
                     forkAndKnifeCount++;
                     forkAndKnifeCountText.text = "Fork and Knife (" + forkAndKnifeCount + ")";
@@ -139,7 +140,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 1: // Shield
-                if(money >= 2)
+                if (money >= 2)
                 {
                     shieldCount++;
                     shieldCountText.text = "Shield (" + shieldCount + ")";
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 2: // Decoy
-                if(money >= 1)
+                if (money >= 1)
                 {
                     decoyCount++;
                     decoyCountText.text = "Decoy (" + decoyCount + ")";
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 3: // Bear Trap
-                if(money >= 2)
+                if (money >= 2)
                 {
                     bearTrapCount++;
                     bearTrapCountText.text = "Bear Trap (" + bearTrapCount + ")";
@@ -169,10 +170,18 @@ public class GameManager : MonoBehaviour
     }
 
     // Activate Hunting Animals Minigame
-    public void HuntAnimals()
+    public void GoHunting()
     {
         woodsPanel.SetActive(false);
-        EndOfDay(-1); // Move this to a finish function when minigame implemented
+        huntingMinigame.SetActive(true);
+        menuCamera.SetActive(false);
+    }
+
+    public void FinishHunting(int hungerChange)
+    {
+        huntingMinigame.SetActive(false);
+        menuCamera.SetActive(true);
+        EndOfDay(hungerChange); // Move this to a finish function when minigame implemented
     }
 
     // Open Train Skills Menu
@@ -198,7 +207,8 @@ public class GameManager : MonoBehaviour
     // Exit Training Minigame and return to Daily Choice Menu
     public void FinishTraining(int which)
     {
-        switch(which) {
+        switch (which)
+        {
             case 0:
                 agilityTrainingMinigame.SetActive(false);
                 speedStatText.text = "Speed " + speedStat;
