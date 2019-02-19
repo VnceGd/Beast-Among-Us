@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Update player speed based on stat
     public void UpdateSpeedStat()
     {
         moveSpeed = STARTMOVESPEED + gameManager.speedStat;

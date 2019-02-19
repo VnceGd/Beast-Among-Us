@@ -61,6 +61,10 @@ public class LogMotion : MonoBehaviour
     {
         transform.position = Vector3.right * maxPosX;
         chopped = false;
+        if (logSpeed > 0)
+        {
+            logSpeed *= -1;
+        }
         movingRight = false;
     }
 
