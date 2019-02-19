@@ -16,9 +16,14 @@ public class AgilityTrainingMinigame : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject winZone;
+
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        resetMap();
         randomMap();
     }
 
@@ -47,6 +52,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
             col4[i].SetActive(false);
             col5[i].SetActive(false);
         }
+        player.transform.position = Vector3.zero;
     }
 
     int selectBranch(int colNum, int branch)
@@ -57,7 +63,7 @@ public class AgilityTrainingMinigame : MonoBehaviour
             {
                 int rand = (int) Random.Range(0, 4);
                 col1[rand].SetActive(true);
-                Instantiate(player, (col1[rand].transform.position + new Vector3(0,3,0)), player.transform.rotation);
+                player.transform.position = col1[rand].transform.position + new Vector3(0,3,0);
                 return rand;
             }
             case 2:
@@ -86,6 +92,8 @@ public class AgilityTrainingMinigame : MonoBehaviour
                 int maxBranch = Mathf.Min(branch+2, 4);
                 int rand = (int) Random.Range(0, maxBranch);
                 col5[rand].SetActive(true);
+                winZone.transform.SetParent(col5[rand].transform, false);
+                winZone.transform.localPosition = new Vector3(0.4f, 2.15f,0);
                 return rand;
             }
             default:
@@ -93,5 +101,16 @@ public class AgilityTrainingMinigame : MonoBehaviour
                 return 0;
             }
         }
+    }
+
+    public void EndMinigame(bool success)
+    {
+        if (success)
+        {
+            gameManager.speedStat++;
+        }
+        resetMap();
+        randomMap();
+        gameManager.FinishTraining(0); // 0 = Agility Training
     }
 }
