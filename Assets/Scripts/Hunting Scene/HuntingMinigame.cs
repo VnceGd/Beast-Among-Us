@@ -23,7 +23,7 @@ public class HuntingMinigame : MonoBehaviour
     public int quantityEaten;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         manager = GameObject.Find("Game Manager");
         gameManager = manager.GetComponent<GameManager>();
@@ -39,7 +39,7 @@ public class HuntingMinigame : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         timer -= Time.deltaTime;
         timerText.text = timer.ToString("0.0");
@@ -49,32 +49,40 @@ public class HuntingMinigame : MonoBehaviour
         }
     }
 
+    // Reset timer, spawn animals and hunters, update player speed
     public void StartMinigame()
     {
         quotaProgress.maxValue = quota * 1.5f;
         timer = STARTTIME;
-        animalSpawner.Spawn();
-        hunterSpawner.Spawn();
+        if (animalSpawner)
+        {
+            animalSpawner.Spawn();
+        }
+        if (hunterSpawner)
+        {
+            hunterSpawner.Spawn();
+        }
+        if (playerController)
+        {
+            playerController.UpdateSpeedStat();
+        }
     }
 
     // Reset variables to starting values
     public void ResetMinigame()
     {
-        timer = STARTTIME;
         timerText.text = "0.0";
         quantityEaten = 0;
         quotaProgress.value = 0;
         playerTransform.position = Vector3.up;
-        playerController.UpdateSpeedStat();
+        playerTransform.localEulerAngles = Vector3.zero;
         animalSpawner.Despawn();
-        animalSpawner.Spawn();
-        if (animalSpawner.animalCount > 5)
+        if (animalSpawner.animalCount > quota / 2)
         {
             animalSpawner.animalCount--;
         }
         hunterSpawner.hunterCount = gameManager.alertLevel;
         hunterSpawner.Despawn();
-        hunterSpawner.Spawn();
     }
 
     // Reward hunger based on how much of quota was fulfilled

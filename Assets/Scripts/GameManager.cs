@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
      *  VARIABLES
      */
     private readonly int MAXHUNGER = 20;
+    private readonly int MAXSTAT = 10;
 
     private int day = 1;
     public int hungerMeter = 10;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public double money;
 
     // UI Elements
+    public GameObject statusBar;
     public GameObject dailyChoicePanel;
     public GameObject cityPanel;
     public GameObject woodsPanel;
@@ -92,11 +94,13 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
         dailyChoicePanel.SetActive(true);
+        statusBar.SetActive(true);
     }
 
     // Activate Work a Job Minigame
     public void WorkAJob()
     {
+        statusBar.SetActive(false);
         cityPanel.SetActive(false);
         jobMinigame.SetActive(true);
     }
@@ -172,16 +176,22 @@ public class GameManager : MonoBehaviour
     // Activate Hunting Animals Minigame
     public void GoHunting()
     {
+        statusBar.SetActive(false);
         woodsPanel.SetActive(false);
         huntingMinigame.SetActive(true);
+        if (huntingMinigame.activeSelf == true)
+        {
+            huntingMinigame.GetComponent<HuntingMinigame>().StartMinigame();
+        }
         menuCamera.SetActive(false);
     }
 
+    // Exit Hunting Minigame and return to Daily Choice Menu
     public void FinishHunting(int hungerChange)
     {
         huntingMinigame.SetActive(false);
         menuCamera.SetActive(true);
-        EndOfDay(hungerChange); // Move this to a finish function when minigame implemented
+        EndOfDay(hungerChange);
     }
 
     // Open Train Skills Menu
@@ -194,29 +204,46 @@ public class GameManager : MonoBehaviour
     // Activate Train Charisma Minigame
     public void TrainCharisma()
     {
+        statusBar.SetActive(false);
         trainingPanel.SetActive(false);
         charismaTrainingMinigame.SetActive(true);
     }
 
+    // Activate Train Agility Minigame
     public void TrainAgility()
     {
+        statusBar.SetActive(false);
         trainingPanel.SetActive(false);
         agilityTrainingMinigame.SetActive(true);
         menuCamera.SetActive(false);
     }
 
     // Exit Training Minigame and return to Daily Choice Menu
-    public void FinishTraining(int which)
+    public void FinishTraining(bool success, int which)
     {
         switch (which)
         {
             case 0:
                 agilityTrainingMinigame.SetActive(false);
+                if (success)
+                {
+                    if (speedStat < MAXSTAT)
+                    {
+                        speedStat++;
+                    }
+                }
                 speedStatText.text = "Speed " + speedStat;
                 menuCamera.SetActive(true);
                 break;
             case 1:
                 charismaTrainingMinigame.SetActive(false);
+                if (success)
+                {
+                    if (charismaStat < MAXSTAT)
+                    {
+                        charismaStat++;
+                    }
+                }
                 charismaStatText.text = "Charisma " + charismaStat;
                 break;
             case 2:

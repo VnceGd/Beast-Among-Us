@@ -55,9 +55,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Open Inventory Panel
+    public void OpenInventory()
+    {
+
+    }
+
     // Update player speed based on stat
     public void UpdateSpeedStat()
     {
-        moveSpeed = STARTMOVESPEED + gameManager.speedStat;
+        if(gameManager)
+        {
+            moveSpeed = STARTMOVESPEED + gameManager.speedStat;
+        }
     }
 }

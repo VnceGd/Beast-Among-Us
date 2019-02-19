@@ -73,22 +73,22 @@ public class CharismaTrainingMinigame : MonoBehaviour
         sweetSpotTransform.localPosition = Vector3.right * sweetSpotPosition;
     }
 
-    // Finish training minigame and increase charisma if successful
-    public void EndMinigame(bool success)
-    {
-        if (success)
-        {
-            gameManager.charismaStat++;
-        }
-        ResetMinigame();
-        gameManager.FinishTraining(1); // 1 = Charisma Training
-    }
-
     // Reset to starting values
     public void ResetMinigame()
     {
         loveLevelSlider.value = MINSLIDERVALUE;
         progressBar.value = STARTPROGRESS;
         RandomizeSweetSpot();
+    }
+
+    // Finish training minigame and increase charisma if successful
+    public void EndMinigame(bool success)
+    {
+        //if (success)
+        //{
+        //    gameManager.charismaStat++;
+        //}
+        ResetMinigame();
+        gameManager.FinishTraining(success, 1); // 1 = Charisma Training
     }
 }
