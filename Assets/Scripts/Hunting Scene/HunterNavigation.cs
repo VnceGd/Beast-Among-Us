@@ -92,5 +92,11 @@ public class HunterNavigation : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (collision.gameObject.tag == "Trap")
+        {
+            Destroy(collision.gameObject);
+            // Instantiate(corpse, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F)) 
         {
-            Instantiate(trap, transform.position, trap.transform.rotation);
+            Instantiate(trap, new Vector3(transform.position.x, 0.01, transform.position.z), trap.transform.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.C)) 
