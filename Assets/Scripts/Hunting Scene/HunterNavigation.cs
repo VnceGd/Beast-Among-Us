@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class HunterNavigation : MonoBehaviour
 {
-    private HuntingMinigame huntingMinigame; 
+    private HuntingMinigame huntingMinigame;
 
     private NavMeshAgent myAgent;
 
@@ -75,7 +75,14 @@ public class HunterNavigation : MonoBehaviour
         {
             if (attacking)
             {
-                huntingMinigame.EndMinigame();
+                if (gameManager.shieldCount > 0)
+                {
+                    gameManager.shieldCount--;
+                }
+                else
+                {
+                    huntingMinigame.EndMinigame();
+                }
             }
             else
             {
