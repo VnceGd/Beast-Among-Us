@@ -72,12 +72,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F)) 
         {
-            Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
+            GameObject newTrap = Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
+            newTrap.transform.SetParent(transform.parent);
         }
 
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            Instantiate(decoy, transform.position, transform.rotation);
+            GameObject newDecoy = Instantiate(decoy, transform.position, transform.rotation);
+            newDecoy.transform.SetParent(transform.parent);
         }
 
         if(fakActive == true)

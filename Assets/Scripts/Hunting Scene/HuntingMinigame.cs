@@ -83,6 +83,13 @@ public class HuntingMinigame : MonoBehaviour
         }
         hunterSpawner.hunterCount = gameManager.alertLevel;
         hunterSpawner.Despawn();
+
+        GameObject[] allDecoys = GameObject.FindGameObjectsWithTag("Decoy");
+        foreach(GameObject decoy in allDecoys)
+            Destroy(decoy);
+        GameObject[] allTraps = GameObject.FindGameObjectsWithTag("Trap");
+        foreach(GameObject trap in allTraps)
+            Destroy(trap);
     }
 
     // Reward hunger based on how much of quota was fulfilled
