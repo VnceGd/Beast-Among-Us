@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
             fakTimer -= Time.deltaTime;
             if (fakTimer <= 0)
             {
+                fakTimer = fakTime;
                 forkAndKnife.SetActive(false);
                 fakActive = false;
             }
