@@ -55,7 +55,7 @@ public class HunterNavigation : MonoBehaviour
                 attacking = false;
                 attackTimer = 0f;
             }
-            GameObject decoy = GameObject.Find("Decoy (Clone)");
+            GameObject decoy = GameObject.Find("Decoy(Clone)");
             if(decoy != null)
                 myAgent.destination = decoy.transform.position + (transform.forward * 2f);
             else
@@ -63,7 +63,7 @@ public class HunterNavigation : MonoBehaviour
         }
         else
         {
-            GameObject decoy = GameObject.Find("Decoy (Clone)");
+            GameObject decoy = GameObject.Find("Decoy(Clone)");
             if(decoy != null)
                 myAgent.destination = decoy.transform.position + (transform.forward * 2f);
             else
