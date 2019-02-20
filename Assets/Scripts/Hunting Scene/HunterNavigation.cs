@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class HunterNavigation : MonoBehaviour
 {
+    public GameManager gameManager;
+
     private HuntingMinigame huntingMinigame;
 
     private NavMeshAgent myAgent;
@@ -86,7 +88,7 @@ public class HunterNavigation : MonoBehaviour
             }
             else
             {
-                huntingMinigame.EatAnimal();
+                huntingMinigame.EatAnimal(collision.gameObject.GetComponent<PlayerController>().fakActive);
                 Destroy(gameObject);
             }
         }

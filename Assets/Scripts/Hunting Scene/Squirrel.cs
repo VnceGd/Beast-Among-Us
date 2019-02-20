@@ -15,7 +15,7 @@ public class Squirrel : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            huntingMinigame.EatAnimal();
+            huntingMinigame.EatAnimal(other.GetComponent<PlayerController>().fakActive);
             Destroy(gameObject);
         }
     }

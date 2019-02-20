@@ -111,9 +111,17 @@ public class HuntingMinigame : MonoBehaviour
     }
 
     // Increase quantity eaten after collision with animal
-    public void EatAnimal()
+    public void EatAnimal(bool fakUsed)
     {
-        quantityEaten++;
-        quotaProgress.value++;
+        if (fakUsed)
+        {
+            quantityEaten += 3;
+            quotaProgress.value += 3;
+        }
+        else
+        {
+            quantityEaten++;
+            quotaProgress.value++;
+        }
     }
 }

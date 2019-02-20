@@ -78,20 +78,20 @@ public class PlayerController : MonoBehaviour
             // Instantiate(decoy, transform.position, transform.rotation);
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) 
-        {
-            forkAndKnife.SetActive(true);
-            //increase eating bonus
-        }
-
         if(fakActive == true)
         {
             fakTimer -= Time.deltaTime;
             if(fakTimer <= 0)
             {
                 forkAndKnife.SetActive(false);
-                //turn off eating bonus
+                fakActive = false;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) 
+        {
+            forkAndKnife.SetActive(true);
+            fakActive = true;
         }
     }
 
