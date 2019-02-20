@@ -106,5 +106,12 @@ public class HunterNavigation : MonoBehaviour
             // Instantiate(corpse, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Decoy")
+        {
+            if (attacking)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
     }
 }
