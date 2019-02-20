@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) 
+        if (Input.GetKeyDown(KeyCode.R)) 
         {
             forkAndKnife.SetActive(true);
             fakActive = true;
