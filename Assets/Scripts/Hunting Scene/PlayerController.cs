@@ -66,36 +66,49 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(Time.deltaTime * Vector3.up * rotateSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.F)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newTrap = Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
-            newTrap.transform.SetParent(transform.parent);
+
         }
 
-        if (Input.GetKeyDown(KeyCode.C)) 
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            GameObject newDecoy = Instantiate(decoy, transform.position, transform.rotation);
-            newDecoy.transform.SetParent(transform.parent);
+            if (gameManager.bearTrapCount > 0)
+            {
+                GameObject newTrap = Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
+                newTrap.transform.SetParent(transform.parent);
+                gameManager.bearTrapCount--;
+            }
         }
 
-        if(fakActive == true)
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (gameManager.decoyCount > 0)
+            {
+                GameObject newDecoy = Instantiate(decoy, transform.position, transform.rotation);
+                newDecoy.transform.SetParent(transform.parent);
+                gameManager.decoyCount--;
+            }
+        }
+
+        if (fakActive == true)
         {
             fakTimer -= Time.deltaTime;
-            if(fakTimer <= 0)
+            if (fakTimer <= 0)
             {
                 forkAndKnife.SetActive(false);
                 fakActive = false;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            forkAndKnife.SetActive(true);
-            fakActive = true;
+            if (gameManager.forkAndKnifeCount > 0)
+            {
+                forkAndKnife.SetActive(true);
+                fakActive = true;
+                gameManager.forkAndKnifeCount--;
+            }
         }
     }
 
@@ -108,7 +121,7 @@ public class PlayerController : MonoBehaviour
     // Update player speed based on stat
     public void UpdateSpeedStat()
     {
-        if(gameManager)
+        if (gameManager)
         {
             moveSpeed = STARTMOVESPEED + gameManager.speedStat;
         }
