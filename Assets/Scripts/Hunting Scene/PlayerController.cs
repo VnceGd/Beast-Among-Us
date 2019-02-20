@@ -77,8 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            GameObject dec = Instantiate(decoy, transform.position, transform.rotation);
-
+            Instantiate(decoy, transform.position, transform.rotation);
         }
 
         if(fakActive == true)

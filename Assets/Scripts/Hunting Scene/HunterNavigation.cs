@@ -55,11 +55,19 @@ public class HunterNavigation : MonoBehaviour
                 attacking = false;
                 attackTimer = 0f;
             }
-            myAgent.destination = GameObject.Find("Player").transform.position + (transform.forward * 2f);
+            GameObject decoy = GameObject.Find("Decoy (Clone)");
+            if(decoy != null)
+                myAgent.destination = decoy.transform.position + (transform.forward * 2f);
+            else
+                myAgent.destination = GameObject.Find("Player").transform.position + (transform.forward * 2f);
         }
         else
         {
-            myAgent.destination = GameObject.Find("Player").transform.position;
+            GameObject decoy = GameObject.Find("Decoy (Clone)");
+            if(decoy != null)
+                myAgent.destination = decoy.transform.position + (transform.forward * 2f);
+            else
+                myAgent.destination = GameObject.Find("Player").transform.position;
         }
     }
 
