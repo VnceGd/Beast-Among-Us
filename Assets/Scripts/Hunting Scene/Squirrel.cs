@@ -18,9 +18,9 @@ public class Squirrel : MonoBehaviour
             huntingMinigame.EatAnimal(other.GetComponent<PlayerController>().fakActive);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Trap")
+        else if (other.gameObject.tag == "Trap")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             // Instantiate(corpse, transform.position, transform.rotation);
             Destroy(gameObject);
         }

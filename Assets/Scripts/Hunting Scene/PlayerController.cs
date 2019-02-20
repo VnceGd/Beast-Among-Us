@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject trap;
 
+    public GameObject decoy;
+
     public GameObject forkAndKnife;
 
     public float fakTimer;
@@ -70,12 +72,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F)) 
         {
-            Instantiate(trap, new Vector3(transform.position.x, 0.01, transform.position.z), trap.transform.rotation);
+            Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            // Instantiate(decoy, transform.position, transform.rotation);
+            GameObject dec = Instantiate(decoy, transform.position, transform.rotation);
+
         }
 
         if(fakActive == true)
