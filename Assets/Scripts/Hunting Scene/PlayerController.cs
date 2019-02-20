@@ -13,6 +13,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerBody;
 
+    public GameObject trap;
+
+    public GameObject forkAndKnife;
+
+    public float fakTimer;
+
+    public float fakTime = 3;
+
+    public bool fakActive;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -22,6 +32,10 @@ public class PlayerController : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
 
         UpdateSpeedStat();
+
+        forkAndKnife.SetActive(false);
+        fakTimer = fakTime;
+        fakActive = false;
     }
 
     // Update is called once per frame
@@ -52,6 +66,32 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) 
+        {
+            Instantiate(trap, transform.position, trap.transform.rotation);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            // Instantiate(decoy, transform.position, transform.rotation);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) 
+        {
+            forkAndKnife.SetActive(true);
+            //increase eating bonus
+        }
+
+        if(fakActive == true)
+        {
+            fakTimer -= Time.deltaTime;
+            if(fakTimer <= 0)
+            {
+                forkAndKnife.SetActive(false);
+                //turn off eating bonus
+            }
         }
     }
 
