@@ -12,6 +12,8 @@ public class AgilityMovement : MonoBehaviour
 
     private bool isInAir;
 
+    public Animator beastAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +34,17 @@ public class AgilityMovement : MonoBehaviour
             {
                 Debug.Log("Face Right");
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+                beastAnim.SetBool("IsMoving", true);
             }
             else if(h_input < 0f)
             {
                 Debug.Log("Face Right");
                 transform.rotation = Quaternion.Euler(0, 180, 0);
+                beastAnim.SetBool("IsMoving", true);
+            }
+            else
+            {
+                beastAnim.SetBool("IsMoving", false);
             }
         }
 
