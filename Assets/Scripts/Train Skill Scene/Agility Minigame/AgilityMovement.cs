@@ -42,13 +42,13 @@ public class AgilityMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 beastAnim.SetBool("IsMoving", true);
             }
-            else
-            {
-                beastAnim.SetBool("IsMoving", false);
-            }
+        }
+        else
+        {
+            beastAnim.SetBool("IsMoving", false);
         }
 
-        if(playerBody.velocity.y == 0)
+        if (playerBody.velocity.y < Mathf.Epsilon)
         {
             isInAir = false;
         }

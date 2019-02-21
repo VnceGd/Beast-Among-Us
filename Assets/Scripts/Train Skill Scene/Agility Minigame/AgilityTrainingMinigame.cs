@@ -105,10 +105,6 @@ public class AgilityTrainingMinigame : MonoBehaviour
 
     public void EndMinigame(bool success)
     {
-        //if (success)
-        //{
-        //    gameManager.speedStat++;
-        //}
         resetMap();
         randomMap();
         gameManager.FinishTraining(success, 0); // 0 = Agility Training

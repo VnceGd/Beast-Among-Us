@@ -84,10 +84,6 @@ public class CharismaTrainingMinigame : MonoBehaviour
     // Finish training minigame and increase charisma if successful
     public void EndMinigame(bool success)
     {
-        //if (success)
-        //{
-        //    gameManager.charismaStat++;
-        //}
         ResetMinigame();
         gameManager.FinishTraining(success, 1); // 1 = Charisma Training
     }

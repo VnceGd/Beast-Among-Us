@@ -2252,6 +2252,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 45
   werewolfMode: 0
+  playerTransform: {fileID: 800304629277524998}
   trap: {fileID: 2944925662762400426, guid: 50d3c6f72a50a71449fe0d066b460677, type: 3}
   decoy: {fileID: 1768275240000055991, guid: 2bdc28989e115094f9e39aeb7f2d1f49, type: 3}
   fork: {fileID: 7266299127109383545}

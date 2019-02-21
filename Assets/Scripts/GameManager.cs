@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public GameObject jobMinigame;
     public GameObject charismaTrainingMinigame;
     public GameObject agilityTrainingMinigame;
+    public GameObject awarenessTrainingMinigame;
     public GameObject huntingMinigame;
 
     /*
@@ -104,6 +105,10 @@ public class GameManager : MonoBehaviour
         statusBar.SetActive(false);
         cityPanel.SetActive(false);
         jobMinigame.SetActive(true);
+        if (jobMinigame)
+        {
+            jobMinigame.GetComponent<JobMinigame>().UpdateLogSpeed();
+        }
     }
 
     // Exit the Job Minigame and return to Daily Choice Menu
@@ -173,7 +178,7 @@ public class GameManager : MonoBehaviour
         moneyNumber.text = money.ToString();
         shopPanel.SetActive(false);
         shopObjects.SetActive(false);
-        EndOfDay(-2);
+        EndOfDay(-1);
     }
 
     // Activate Hunting Animals Minigame
@@ -221,6 +226,18 @@ public class GameManager : MonoBehaviour
         menuCamera.SetActive(false);
     }
 
+    // Activate Train Awareness Minigame
+    public void TrainAwareness()
+    {
+        statusBar.SetActive(false);
+        trainingPanel.SetActive(false);
+        awarenessTrainingMinigame.SetActive(true);
+        if (awarenessTrainingMinigame)
+        {
+            awarenessTrainingMinigame.GetComponent<AwarenessTrainingMinigame>().UpdateSwapCount();
+        }
+    }
+
     // Exit Training Minigame and return to Daily Choice Menu
     public void FinishTraining(bool success, int which)
     {
@@ -250,7 +267,15 @@ public class GameManager : MonoBehaviour
                 charismaStatText.text = "Charisma " + charismaStat;
                 break;
             case 2:
-                // Finish Awareness Training Minigame 
+                awarenessTrainingMinigame.SetActive(false);
+                if (success)
+                {
+                    if (awarenessStat < MAXSTAT)
+                    {
+                        awarenessStat++;
+                    }
+                }
+                awarenessStatText.text = "Awareness " + awarenessStat;
                 break;
         }
         EndOfDay(-2);

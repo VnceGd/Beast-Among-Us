@@ -64,7 +64,7 @@ public class HuntingMinigame : MonoBehaviour
         }
         if (playerController)
         {
-            playerController.UpdateSpeedStat();
+            playerController.UpdateStats();
         }
     }
 

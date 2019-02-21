@@ -358,8 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47697b5ec710640b2b4a7b4429c8d6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPosX: -6
-  maxPosX: 6
+  minPosX: -5
+  maxPosX: 5
   logSpeed: 0
   movingRight: 0
   chopped: 0
+  waitTimer: 1

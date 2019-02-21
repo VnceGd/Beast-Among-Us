@@ -54,12 +54,12 @@ public class JobMinigame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         woodLog.SetActive(true);
         countdown.SetActive(false);
+        UpdateLogSpeed();
     }
 
     // Reset varialbes to starting values
     public void ResetMinigame()
     {
-        logMotion.logSpeed = -2f;
         logMotion.ResetLog();
         woodLog.SetActive(false);
 
@@ -100,7 +100,7 @@ public class JobMinigame : MonoBehaviour
             }
         }
         logCount--;
-        logMotion.logSpeed *= 1.5f;
+        logMotion.logSpeed *= 1.25f;
         if (logCount <= 0)
         {
             foreach (Toggle tog in successToggles)
@@ -113,6 +113,15 @@ public class JobMinigame : MonoBehaviour
             }
             EndMinigame(true);
             return;
+        }
+    }
+
+    // Incrase log speed based on current Charisma stat
+    public void UpdateLogSpeed()
+    {
+        if (gameManager)
+        {
+            logMotion.logSpeed = -2f - (gameManager.charismaStat * 0.25f);
         }
     }
 }
