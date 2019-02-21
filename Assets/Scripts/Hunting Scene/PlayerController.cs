@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject decoy;
 
-    public GameObject forkAndKnife;
+    public GameObject fork;
+
+    public GameObject knife;
 
     public float fakTimer;
 
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     public float shieldTimer;
 
+    public Animator beastAnim;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -41,7 +45,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateSpeedStat();
 
-        forkAndKnife.SetActive(false);
+        fork.SetActive(false);
+        knife.SetActive(false);
         fakTimer = fakTime;
         fakActive = false;
     }
@@ -56,10 +61,16 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(h_input) > 0f)
         {
             moveVelocity += transform.right * Time.deltaTime * h_input * moveSpeed;
+            beastAnim.SetBool("IsMoving", true);
         }
         if (Mathf.Abs(v_input) > 0f)
         {
             moveVelocity += transform.forward * Time.deltaTime * v_input * moveSpeed;
+            beastAnim.SetBool("IsMoving", true);
+        }
+        if(Mathf.Abs(h_input) == 0f && Mathf.Abs(v_input) == 0f)
+        {
+            beastAnim.SetBool("IsMoving", false);
         }
         playerBody.MovePosition(transform.position + moveVelocity);
 
@@ -113,7 +124,8 @@ public class PlayerController : MonoBehaviour
             if (fakTimer <= 0)
             {
                 fakTimer = fakTime;
-                forkAndKnife.SetActive(false);
+                fork.SetActive(false);
+                knife.SetActive(false);
                 fakActive = false;
             }
         }
@@ -122,7 +134,8 @@ public class PlayerController : MonoBehaviour
         {
             if (gameManager.forkAndKnifeCount > 0)
             {
-                forkAndKnife.SetActive(true);
+                fork.SetActive(true);
+                knife.SetActive(true);
                 fakActive = true;
                 gameManager.forkAndKnifeCount--;
             }

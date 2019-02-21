@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject cityPanel;
     public GameObject woodsPanel;
     public GameObject shopPanel;
+    public GameObject shopObjects;
     public GameObject trainingPanel;
     public TextMeshProUGUI dayNumber;
     public TextMeshProUGUI moneyNumber;
@@ -123,6 +124,7 @@ public class GameManager : MonoBehaviour
         // Go to shop menu (Items Not Implemented)
         cityPanel.SetActive(false);
         shopPanel.SetActive(true);
+        shopObjects.SetActive(true);
     }
 
     // Purchase an item from the shop
@@ -170,6 +172,7 @@ public class GameManager : MonoBehaviour
         }
         moneyNumber.text = money.ToString();
         shopPanel.SetActive(false);
+        shopObjects.SetActive(false);
         EndOfDay(-2);
     }
 
