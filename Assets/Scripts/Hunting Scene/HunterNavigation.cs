@@ -100,6 +100,7 @@ public class HunterNavigation : MonoBehaviour
             else
             {
                 huntingMinigame.EatAnimal(player.fakActive);
+                player.beastAnim.SetTrigger("IsAttacking");
                 Destroy(gameObject);
             }
         }

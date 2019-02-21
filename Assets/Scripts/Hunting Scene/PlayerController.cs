@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     public float shieldTimer;
 
+    public Animator beastAnim;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -59,10 +61,16 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(h_input) > 0f)
         {
             moveVelocity += transform.right * Time.deltaTime * h_input * moveSpeed;
+            beastAnim.SetBool("IsMoving", true);
         }
         if (Mathf.Abs(v_input) > 0f)
         {
             moveVelocity += transform.forward * Time.deltaTime * v_input * moveSpeed;
+            beastAnim.SetBool("IsMoving", true);
+        }
+        if(Mathf.Abs(h_input) == 0f && Mathf.Abs(v_input) == 0f)
+        {
+            beastAnim.SetBool("IsMoving", false);
         }
         playerBody.MovePosition(transform.position + moveVelocity);
 

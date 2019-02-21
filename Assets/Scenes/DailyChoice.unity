@@ -246,11 +246,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2341,7 +2341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &425208387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3322,6 +3322,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626494295}
   m_CullTransparentMesh: 0
+--- !u!95 &629069536 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 752534053914634810, guid: 416e39a164ed24f22ba6627998ac3d6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6514953520190280823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &655616076
 GameObject:
   m_ObjectHideFlags: 0
@@ -4780,11 +4786,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6766,7 +6772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1114478375
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8685,11 +8691,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11783,6 +11789,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1768275240000055991, guid: 2bdc28989e115094f9e39aeb7f2d1f49,
         type: 3}
+    - target: {fileID: 1763716463227952370, guid: 416e39a164ed24f22ba6627998ac3d6e,
+        type: 3}
+      propertyPath: beastAnim
+      value: 
+      objectReference: {fileID: 629069536}
+    - target: {fileID: 1763716463227952370, guid: 416e39a164ed24f22ba6627998ac3d6e,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 773561614}
+    - target: {fileID: 752534053914634810, guid: 416e39a164ed24f22ba6627998ac3d6e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6668fcdecc00f8c4f90764393ccd0324, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 416e39a164ed24f22ba6627998ac3d6e, type: 3}
 --- !u!1001 &6819447505081839185

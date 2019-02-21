@@ -2262,6 +2262,7 @@ MonoBehaviour:
   shieldDown: 0
   shieldCooldown: 2
   shieldTimer: 0
+  beastAnim: {fileID: 800304629285317606}
 --- !u!1 &7603584126349441410
 GameObject:
   m_ObjectHideFlags: 0
