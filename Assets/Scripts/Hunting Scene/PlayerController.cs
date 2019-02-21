@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     private readonly float STARTMOVESPEED = 5f;
 
     private GameObject manager;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     public float moveSpeed = 5f;
     public float rotateSpeed = 5f;
@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
     public float fakTime = 3;
 
     public bool fakActive;
+
+    public bool shieldDown;
+
+    public float shieldCooldown = 2f;
+
+    public float shieldTimer;
 
     // Start is called before the first frame update
     public void Start()
@@ -88,6 +94,16 @@ public class PlayerController : MonoBehaviour
                 GameObject newDecoy = Instantiate(decoy, transform.position, transform.rotation);
                 newDecoy.transform.SetParent(transform.parent);
                 gameManager.decoyCount--;
+            }
+        }
+
+        if (shieldDown)
+        {
+            shieldTimer += Time.deltaTime;
+            if (shieldTimer > shieldCooldown)
+            {
+                shieldDown = false;
+                shieldTimer = 0f;
             }
         }
 

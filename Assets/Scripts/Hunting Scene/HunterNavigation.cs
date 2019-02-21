@@ -3,8 +3,6 @@ using UnityEngine.AI;
 
 public class HunterNavigation : MonoBehaviour
 {
-    public GameManager gameManager;
-
     private HuntingMinigame huntingMinigame;
 
     private NavMeshAgent myAgent;
@@ -56,7 +54,7 @@ public class HunterNavigation : MonoBehaviour
                 attackTimer = 0f;
             }
             GameObject decoy = GameObject.Find("Decoy(Clone)");
-            if(decoy != null)
+            if (decoy != null)
                 myAgent.destination = decoy.transform.position + (transform.forward * 2f);
             else
                 myAgent.destination = GameObject.Find("Player").transform.position + (transform.forward * 2f);
@@ -64,7 +62,7 @@ public class HunterNavigation : MonoBehaviour
         else
         {
             GameObject decoy = GameObject.Find("Decoy(Clone)");
-            if(decoy != null)
+            if (decoy != null)
                 myAgent.destination = decoy.transform.position + (transform.forward * 2f);
             else
                 myAgent.destination = GameObject.Find("Player").transform.position;
@@ -83,11 +81,16 @@ public class HunterNavigation : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (attacking)
             {
-                if (gameManager.shieldCount > 0)
+                if (player.gameManager.shieldCount > 0)
                 {
-                    gameManager.shieldCount--;
+                    if (!player.shieldDown)
+                    {
+                        player.gameManager.shieldCount--;
+                        player.shieldDown = true;
+                    }
                 }
                 else
                 {
@@ -96,7 +99,7 @@ public class HunterNavigation : MonoBehaviour
             }
             else
             {
-                huntingMinigame.EatAnimal(collision.gameObject.GetComponent<PlayerController>().fakActive);
+                huntingMinigame.EatAnimal(player.fakActive);
                 Destroy(gameObject);
             }
         }
