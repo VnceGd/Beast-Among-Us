@@ -106,7 +106,7 @@ public class HunterNavigation : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Trap")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Trap>().TrapActivated();
             // Instantiate(corpse, transform.position, transform.rotation);
             Destroy(gameObject);
         }
