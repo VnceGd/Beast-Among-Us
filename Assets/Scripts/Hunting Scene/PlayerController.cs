@@ -5,13 +5,31 @@ public class PlayerController : MonoBehaviour
     private readonly float STARTMOVESPEED = 5f;
 
     private GameObject manager;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     public float moveSpeed = 5f;
     public float rotateSpeed = 5f;
     public bool werewolfMode;
 
     private Rigidbody playerBody;
+
+    public GameObject trap;
+
+    public GameObject decoy;
+
+    public GameObject forkAndKnife;
+
+    public float fakTimer;
+
+    public float fakTime = 3;
+
+    public bool fakActive;
+
+    public bool shieldDown;
+
+    public float shieldCooldown = 2f;
+
+    public float shieldTimer;
 
     // Start is called before the first frame update
     public void Start()
@@ -22,6 +40,10 @@ public class PlayerController : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
 
         UpdateSpeedStat();
+
+        forkAndKnife.SetActive(false);
+        fakTimer = fakTime;
+        fakActive = false;
     }
 
     // Update is called once per frame
@@ -50,8 +72,60 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(Time.deltaTime * Vector3.up * rotateSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (gameManager.bearTrapCount > 0)
+            {
+                GameObject newTrap = Instantiate(trap, new Vector3(transform.position.x, 0.01f, transform.position.z), trap.transform.rotation);
+                newTrap.transform.SetParent(transform.parent);
+                gameManager.bearTrapCount--;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (gameManager.decoyCount > 0)
+            {
+                GameObject newDecoy = Instantiate(decoy, transform.position, transform.rotation);
+                newDecoy.transform.SetParent(transform.parent);
+                gameManager.decoyCount--;
+            }
+        }
+
+        if (shieldDown)
+        {
+            shieldTimer += Time.deltaTime;
+            if (shieldTimer > shieldCooldown)
+            {
+                shieldDown = false;
+                shieldTimer = 0f;
+            }
+        }
+
+        if (fakActive == true)
+        {
+            fakTimer -= Time.deltaTime;
+            if (fakTimer <= 0)
+            {
+                fakTimer = fakTime;
+                forkAndKnife.SetActive(false);
+                fakActive = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && !fakActive)
+        {
+            if (gameManager.forkAndKnifeCount > 0)
+            {
+                forkAndKnife.SetActive(true);
+                fakActive = true;
+                gameManager.forkAndKnifeCount--;
+            }
         }
     }
 
@@ -64,7 +138,7 @@ public class PlayerController : MonoBehaviour
     // Update player speed based on stat
     public void UpdateSpeedStat()
     {
-        if(gameManager)
+        if (gameManager)
         {
             moveSpeed = STARTMOVESPEED + gameManager.speedStat;
         }

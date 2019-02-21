@@ -83,6 +83,13 @@ public class HuntingMinigame : MonoBehaviour
         }
         hunterSpawner.hunterCount = gameManager.alertLevel;
         hunterSpawner.Despawn();
+
+        GameObject[] allDecoys = GameObject.FindGameObjectsWithTag("Decoy");
+        foreach(GameObject decoy in allDecoys)
+            Destroy(decoy);
+        GameObject[] allTraps = GameObject.FindGameObjectsWithTag("Trap");
+        foreach(GameObject trap in allTraps)
+            Destroy(trap);
     }
 
     // Reward hunger based on how much of quota was fulfilled
@@ -111,9 +118,17 @@ public class HuntingMinigame : MonoBehaviour
     }
 
     // Increase quantity eaten after collision with animal
-    public void EatAnimal()
+    public void EatAnimal(bool fakUsed)
     {
-        quantityEaten++;
-        quotaProgress.value++;
+        if (fakUsed)
+        {
+            quantityEaten += 3;
+            quotaProgress.value += 3;
+        }
+        else
+        {
+            quantityEaten++;
+            quotaProgress.value++;
+        }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class HunterNavigation : MonoBehaviour
 {
-    private HuntingMinigame huntingMinigame; 
+    private HuntingMinigame huntingMinigame;
 
     private NavMeshAgent myAgent;
 
@@ -53,11 +53,19 @@ public class HunterNavigation : MonoBehaviour
                 attacking = false;
                 attackTimer = 0f;
             }
-            myAgent.destination = GameObject.Find("Player").transform.position + (transform.forward * 2f);
+            GameObject decoy = GameObject.Find("Decoy(Clone)");
+            if (decoy != null)
+                myAgent.destination = decoy.transform.position + (transform.forward * 2f);
+            else
+                myAgent.destination = GameObject.Find("Player").transform.position + (transform.forward * 2f);
         }
         else
         {
-            myAgent.destination = GameObject.Find("Player").transform.position;
+            GameObject decoy = GameObject.Find("Decoy(Clone)");
+            if (decoy != null)
+                myAgent.destination = decoy.transform.position + (transform.forward * 2f);
+            else
+                myAgent.destination = GameObject.Find("Player").transform.position;
         }
     }
 
@@ -73,14 +81,39 @@ public class HunterNavigation : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (attacking)
             {
-                huntingMinigame.EndMinigame();
+                if (player.gameManager.shieldCount > 0)
+                {
+                    if (!player.shieldDown)
+                    {
+                        player.gameManager.shieldCount--;
+                        player.shieldDown = true;
+                    }
+                }
+                else
+                {
+                    huntingMinigame.EndMinigame();
+                }
             }
             else
             {
-                huntingMinigame.EatAnimal();
+                huntingMinigame.EatAnimal(player.fakActive);
                 Destroy(gameObject);
+            }
+        }
+        else if (collision.gameObject.tag == "Trap")
+        {
+            Destroy(collision.gameObject);
+            // Instantiate(corpse, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "Decoy")
+        {
+            if (attacking)
+            {
+                Destroy(collision.gameObject);
             }
         }
     }
