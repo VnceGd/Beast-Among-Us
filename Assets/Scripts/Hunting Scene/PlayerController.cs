@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject decoy;
 
-    public GameObject forkAndKnife;
+    public GameObject fork;
+
+    public GameObject knife;
 
     public float fakTimer;
 
@@ -41,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateSpeedStat();
 
-        forkAndKnife.SetActive(false);
+        fork.SetActive(false);
+        knife.SetActive(false);
         fakTimer = fakTime;
         fakActive = false;
     }
@@ -113,7 +116,8 @@ public class PlayerController : MonoBehaviour
             if (fakTimer <= 0)
             {
                 fakTimer = fakTime;
-                forkAndKnife.SetActive(false);
+                fork.SetActive(false);
+                knife.SetActive(false);
                 fakActive = false;
             }
         }
@@ -122,7 +126,8 @@ public class PlayerController : MonoBehaviour
         {
             if (gameManager.forkAndKnifeCount > 0)
             {
-                forkAndKnife.SetActive(true);
+                fork.SetActive(true);
+                knife.SetActive(true);
                 fakActive = true;
                 gameManager.forkAndKnifeCount--;
             }
