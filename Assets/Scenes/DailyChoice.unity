@@ -8918,6 +8918,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584900081}
   m_CullTransparentMesh: 0
+--- !u!95 &1610300978 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1132374340169238108, guid: 1f2e393c6a2784b4797f589fa7f42960,
+    type: 3}
+  m_PrefabInstance: {fileID: 1869379394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1610523737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,7 +9865,7 @@ PrefabInstance:
     - target: {fileID: 322331419388949179, guid: 1f2e393c6a2784b4797f589fa7f42960,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322331419388949177, guid: 1f2e393c6a2784b4797f589fa7f42960,
         type: 3}
@@ -9921,6 +9927,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 773561614}
+    - target: {fileID: 4592404548588473915, guid: 1f2e393c6a2784b4797f589fa7f42960,
+        type: 3}
+      propertyPath: beastAnim
+      value: 
+      objectReference: {fileID: 1610300978}
     - target: {fileID: 322331418012054065, guid: 1f2e393c6a2784b4797f589fa7f42960,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
